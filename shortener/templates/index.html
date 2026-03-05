@@ -9,39 +9,52 @@
     <link rel="icon" type="image/png" href="{% static 'images/Favicon.png' %}">
 </head>
 <body>
+<div class="hero">
 
-<button class="theme-toggle" id="themeToggle">
+    <h1 class="hero-title">
+        Transform Your <span>Links</span><br>
+        in a Click
+    </h1>
+
+    <p class="hero-sub">
+        Effortlessly shorten, secure and optimize your links.
+    </p>
+
+    <button class="theme-toggle" id="themeToggle">
     <span class="toggle-dot"></span>
-</button>
+   </button>
 
-<div class="glow"></div>
+</div>
+
 
 <div class="card">
-    <h1>URL Shortener</h1>
-    <p class="subtitle">Create short links easily.</p>
+
+    <h2>URL Shortener</h2>
+    <p class="subtitle">Paste your long link here</p>
 
     <form method="POST" class="url-form">
         {% csrf_token %}
+
         <input type="url"
                name="url"
-               placeholder="https://example.com/very-long-url"
+               placeholder="https://example.com/your-long-url"
                required>
 
         {% if not short_url %}
         <button type="submit" class="primary-btn">
-            Shorten URL
+            Shorten my link
         </button>
         {% endif %}
+
     </form>
 
+
     {% if short_url %}
+
     <div class="result-box">
 
-        <div class="result-title">
-            Short URL
-        </div>
-
         <div class="short-url-row">
+
             <a href="{{ short_url }}" target="_blank" id="shortLink">
                 {{ short_url }}
             </a>
@@ -49,6 +62,7 @@
             <button type="button" class="copy-btn" onclick="copyURL()">
                 Copy
             </button>
+
         </div>
 
         <div class="click-count">
@@ -60,9 +74,12 @@
         </a>
 
     </div>
+
     {% endif %}
+
 </div>
 
 <script src="{% static 'js/theme.js' %}"></script>
+
 </body>
 </html>
