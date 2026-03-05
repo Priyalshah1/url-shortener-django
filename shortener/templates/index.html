@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'images/Favicon.png' %}">
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle">
+    <span class="toggle-dot"></span>
+</button>
+
+<div class="glow"></div>
+
+<div class="card">
+    <h1>URL Shortener</h1>
+    <p class="subtitle">Create short links easily.</p>
+
+    <form method="POST" class="url-form">
+        {% csrf_token %}
+        <input type="url"
+               name="url"
+               placeholder="https://example.com/very-long-url"
+               required>
+
+        {% if not short_url %}
+        <button type="submit" class="primary-btn">
+            Shorten URL
+        </button>
+        {% endif %}
+    </form>
+
+    {% if short_url %}
+    <div class="result-box">
+
+        <div class="result-title">
+            Short URL
+        </div>
+
+        <div class="short-url-row">
+            <a href="{{ short_url }}" target="_blank" id="shortLink">
+                {{ short_url }}
+            </a>
+
+            <button type="button" class="copy-btn" onclick="copyURL()">
+                Copy
+            </button>
+        </div>
+
+        <div class="click-count">
+            Total Clicks: {{ click_count }}
+        </div>
+
+        <a href="/" class="generate-btn">
+            Generate New URL
+        </a>
+
+    </div>
+    {% endif %}
+</div>
+
+<script src="{% static 'js/theme.js' %}"></script>
+</body>
+</html>
