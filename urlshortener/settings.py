@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-r^$or%yu75qs+iry+x&6ns7i%a&8gh%gt&mk=eeh+9il&3vl#(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -75,12 +75,8 @@ WSGI_APPLICATION = 'urlshortener.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'url_shortener_db',
-        'USER': 'root',
-        'PASSWORD': 'root@2001',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
